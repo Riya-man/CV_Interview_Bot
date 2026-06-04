@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Generate Interview Questions{% endblock %}
+
+{% block content %}
+  {% if session.get('resume_name') %}
+    <div class="question-card">
+      <p><strong>Current resume:</strong> {{ session.get('resume_name') }}</p>
+      <p class="note">You can reuse this resume for a different category without uploading again.</p>
+      <a class="button-secondary" href="/category">Choose another category</a>
+    </div>
+  {% endif %}
+
+  <form action="/generate" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="resume">Upload Resume (PDF)</label>
+      <input type="file" id="resume" name="resume" accept="application/pdf" {% if not session.get('resume_name') %}required{% endif %} />
+    </div>
+
+    <div class="form-group">
+      <label for="category">Question Type</label>
+      <select id="category" name="category">
+        {% for c in categories %}
+          <option value="{{ c }}">{{ c }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <button type="submit">Generate Interview Questions</button>
+  </form>
+{% endblock %}

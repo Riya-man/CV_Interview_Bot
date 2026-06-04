@@ -1,0 +1,23 @@
+# Docker Compose Override for Development
+# This file extends docker-compose.yml for development purposes
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+version: '3.8'
+
+services:
+  interview-bot:
+    # Mount entire project for live code changes
+    volumes:
+      - ./:/app
+
+    # Increase logging for debugging
+    environment:
+      - LOG_LEVEL=DEBUG
+
+    # Keep container running for debugging
+    stdin_open: true
+    tty: true
+
+    # For development, expose more ports if needed
+    ports:
+      - "8501:8501"

@@ -1,0 +1,37 @@
+# Docker Compose for minimal resource usage
+# Use this configuration for lightweight deployments
+
+services:
+  interview-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cv-interview-bot
+    ports:
+      - "8501:8501"
+    volumes:
+      # Only mount essential directories
+      - ./data/resumes:/app/data/resumes
+      - ./data/vector_db:/app/data/vector_db
+      - ./outputs:/app/outputs
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    command: python src/server.py
+    networks:
+      - interview-network
+    restart: unless-stopped
+    # Resource limits (optional, uncomment to enforce)
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '2'
+    #       memory: 2G
+    #     reservations:
+    #       cpus: '1'
+    #       memory: 1G
+
+networks:
+  interview-network:
+    driver: bridge

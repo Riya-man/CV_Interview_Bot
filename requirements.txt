@@ -1,0 +1,6 @@
+groq==0.4.2
+sentence-transformers==2.2.2
+faiss-cpu==1.7.4
+python-dotenv==1.0.0
+pypdf==3.17.1
+flask==2.3.2

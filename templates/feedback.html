@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}AI Feedback{% endblock %}
+
+{% block content %}
+  <h2>AI Feedback</h2>
+  <div class="question-card">
+    <h3>Question</h3>
+    <p>{{ question }}</p>
+
+    <h3>Your Answer</h3>
+    <pre>{{ answer }}</pre>
+
+    <h3>Feedback</h3>
+    <pre>{{ feedback }}</pre>
+  </div>
+
+  {% if has_next %}
+    <a class="button-secondary top-link" href="/question">Continue to Next Question</a>
+  {% else %}
+    <p class="note">You’ve completed all questions. Upload a new resume or restart if you want another category.</p>
+    <a class="button-secondary top-link" href="/">Upload New Resume</a>
+  {% endif %}
+{% endblock %}

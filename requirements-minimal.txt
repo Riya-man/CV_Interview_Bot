@@ -1,0 +1,10 @@
+# Minimal requirements for CV Interview Bot
+# Use this for ultra-lightweight deployments
+# Note: Some features may be limited with older versions
+
+streamlit==1.28.1
+groq==0.4.2
+sentence-transformers==2.2.2
+faiss-cpu==1.7.4
+python-dotenv==1.0.0
+pypdf==3.17.1

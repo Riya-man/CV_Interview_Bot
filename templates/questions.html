@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Interview Question{% endblock %}
+
+{% block content %}
+  <h2>Question {{ index + 1 }} of {{ total }}</h2>
+  <p class="note">Answer the question below and continue to the next one without reuploading your resume.</p>
+
+  <div class="question-card">
+    <p>{{ question }}</p>
+    <form action="/evaluate" method="post">
+      <input type="hidden" name="index" value="{{ index }}" />
+      <div class="form-group">
+        <label for="answer">Your Answer</label>
+        <textarea id="answer" name="answer" required></textarea>
+      </div>
+      <button type="submit">Evaluate Answer</button>
+    </form>
+  </div>
+
+  <a class="button-secondary top-link" href="/">← Start Over</a>
+{% endblock %}
